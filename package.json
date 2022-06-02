@@ -1,0 +1,16 @@
+{
+  "name": "hatch-backend",
+  "version": "1.0.0",
+  "description": "Hatchways backend assessment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon hatch-backend"
+  },
+  "author": "Victor Pineda",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16"
+  }
+}
