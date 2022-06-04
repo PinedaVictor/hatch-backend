@@ -1,4 +1,5 @@
 import Router from "express";
+import { getPostsData } from "../data/blogs.js";
 const APIRouter = Router();
 
 APIRouter.get("/ping", (req, res) => {
@@ -7,7 +8,7 @@ APIRouter.get("/ping", (req, res) => {
   return;
 });
 
-APIRouter.get("/posts", (req, res) => {
+APIRouter.get("/posts", async (req, res) => {
   const requestParameters = req.query;
 
   //   checking for valid query paremeters
@@ -35,12 +36,15 @@ APIRouter.get("/posts", (req, res) => {
     return;
   }
 
-  console.log(requestParameters);
-  //   parameter defualts: sortBy: id, direction: asc
+  //   console.log(requestParameters);
+  //   get json data
+  const data = await getPostsData(requestParameters);
 
   res.send("SUP");
 
-  //   We must now check for valid sortBy and direction parameters
+  // TODO:
+  //   return json data as response
+  //   res.json(data);
 });
 
 export default APIRouter;
