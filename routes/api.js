@@ -11,6 +11,9 @@ APIRouter.get("/ping", (req, res) => {
 APIRouter.get("/posts", async (req, res) => {
   const requestParameters = req.query;
 
+  // TODO: Create validate params function
+  // TODO: Create error response function
+  // TODO: Create success response function
   //   checking for valid query paremeters
   if (!requestParameters["tags"]) {
     res.json({ error: "tags parameter is required" });
@@ -44,7 +47,7 @@ APIRouter.get("/posts", async (req, res) => {
 
   // TODO:
   //   return json data as response
-  //   res.json(data);
+  // res.json(data);
 });
 
 export default APIRouter;

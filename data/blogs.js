@@ -1,10 +1,25 @@
-import fetch from "node-fetch";
 import { parseParameters } from "../utils/ParseParams.js";
+import { generateResponses } from "../utils/Fetch.js";
 
-const hatchwaysPostsAPI =
-  "https://api.hatchways.io/assessment/blog/posts?tag=tech";
-
-const API = "https://api.hatchways.io/assessment/blog/posts?tag=";
+const sep = (input = []) => {
+  const postData = input.map(async (res) => {
+    const postResponse = res.value;
+    const data = postResponse.json();
+    console.log("Printing before");
+    if (data) {
+      console.log("Printing before");
+      // data.then((dataItem) => {
+      //   console.log("THE DATA ITEM");
+      // });
+    } else {
+      console.log("NO data");
+    }
+    // data.then((item) => {
+    //   console.log("THE ITEM", item);
+    // });
+  });
+  // return postData;
+};
 
 export const getPostsData = async (parameters) => {
   const searchCriteria = parseParameters(parameters);
@@ -14,26 +29,25 @@ export const getPostsData = async (parameters) => {
     //   Need a butch of these fetch requests
     //   each request will have a param of tag
     //   https://api.hatchways.io/assessment/blog/posts?tag={param}
-    // console.log("bf:::::", batchFetch);
 
-    const batchFetch = tags.map((item) => {
-      return fetch(`${API}${item}`, { method: "get", mode: "cors" });
-    });
+    const batchResponses = generateResponses(tags);
+    // const fetchPromises = await Promise.all(batchResponses);
+    const fetchPromises = await Promise.allSettled(batchResponses);
 
-    const fetchPromises = await Promise.all(batchFetch);
-    fetchPromises.map(async (res) => {
-      const postResponse = await res;
-      const postData = postResponse.json();
-      postData.then((item) => {
-        console.log(item);
-      });
-    });
-
-    // console.log("the data:", data);
-    // console.log(data);
-    // data.then((res) => {
-    //   console.log(res);
+    const postData = sep(fetchPromises);
+    // const d = postData.forEach((item) => {
+    //   console.log();
     // });
+    // const postData = fetchPromises.map(async (res) => {
+    //   const postResponse = await res.value;
+    //   console.log(postResponse);
+    //   // const postData = await postResponse.json();
+    //   // // console.log("In map fuction", postData);
+    //   // if (postData) {
+    //   //   return postData;
+    //   // }
+    // });
+    console.log("postData :", postData);
 
     // console.log(data);
 
