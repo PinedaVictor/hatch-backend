@@ -23,4 +23,4 @@ const generatePromises = (tags = []) => {
   });
 };
 
-export { generatePromises };
+export { generatePromises, promise };

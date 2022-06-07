@@ -1,32 +1,4 @@
-const parseStringObjs = (inputSet = new Set()) => {
-  const dataSet = new Set();
-  inputSet.forEach((data) => {
-    const dataObj = JSON.parse(data);
-    dataSet.add(dataObj);
-  });
-  return dataSet;
-};
-
-// data: [[],[], ...]
-const removeDublicates = (data = []) => {
-  const uniquedata = new Set();
-  data.map((data) => {
-    data.map((dataObj) => {
-      const item = JSON.stringify(dataObj);
-      uniquedata.add(item);
-    });
-  });
-
-  const parsedData = parseStringObjs(uniquedata);
-  return parsedData;
-};
-
-// data: [ {arrName:[]}, ... ]
-const decomposeData = (data = {}, arrName) => {
-  return data.map((dataItem) => {
-    return dataItem[arrName];
-  });
-};
+import { removeDublicates, decomposeData } from "./index.js";
 
 const hashByProperty = (data = [], property = "") => {
   const dataMap = new Map();
@@ -36,23 +8,27 @@ const hashByProperty = (data = [], property = "") => {
   return dataMap;
 };
 
-export const sort = (dataInput = {}, sortBy, direction) => {
+export const sort = (dataInput = {}, sortBy = "id", direction = "asc") => {
+  const defualtDirection = direction === "asc" ? true : false;
   const rawData = decomposeData(dataInput, "posts");
   const dataSet = removeDublicates(rawData);
   const data = [...dataSet];
-  const dataMap = hashByProperty(data, "id");
+  // TODO: pass in sortBy prop
+  const dataMap = hashByProperty(data, "reads");
 
   const keys = [...dataMap.keys()];
-
-  console.log("the keys:", keys);
-  const nums = data.map((user) => {
-    return user["id"];
-  });
-
-  const sorted = nums.sort((a, b) => {
+  const sortKeys = keys.sort((a, b) => {
     return a - b;
   });
 
+  console.log(sortKeys);
+  const sortedData = sortKeys.map((key) => {
+    return dataMap.get(key);
+  });
+
+  console.log(defualtDirection);
+  // TODO: pass in sortBy and direction
+  // return direction ? [] : [].reverse();
   // const s = [...dataInput];
   // console.log("s:", s);
   // alg:
