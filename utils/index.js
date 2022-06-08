@@ -6,3 +6,5 @@ export {
   removeDublicates,
   decomposeData,
 } from "./DataHandling.js";
+
+export { paramError, success } from "./Response.js";
