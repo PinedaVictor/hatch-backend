@@ -38,16 +38,8 @@ APIRouter.get("/posts", async (req, res) => {
     res.status(400);
     return;
   }
-
-  //   console.log(requestParameters);
-  //   get json data
-  const data = await getPostsData(requestParameters);
-
-  res.send("SUP");
-
-  // TODO:
-  //   return json data as response
-  // res.json(data);
+  const posts = await getPostsData(requestParameters);
+  res.json({ posts });
 });
 
 export default APIRouter;
