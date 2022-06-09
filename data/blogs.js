@@ -5,7 +5,6 @@ export const getPostsData = async (parameters) => {
   const tags = searchCriteria["tags"];
   const sortBy = searchCriteria["sortBy"];
   const direction = searchCriteria["direction"];
-  console.log("search with:", searchCriteria);
   try {
     const batchPromises = generatePromises(tags);
     const resolvePromises = await Promise.all(batchPromises);

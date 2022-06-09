@@ -8,6 +8,7 @@ app.use("/api", APIRouter);
 
 app.get("/", (req, res) => {
   res.json([{ name: "Victor", lastname: "Pineda" }]);
+  res.status(200);
 });
 
 app.listen(port, () => {

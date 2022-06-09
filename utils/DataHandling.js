@@ -8,7 +8,7 @@ const parseStringObjs = (inputSet = new Set()) => {
 };
 
 // data: [[],[], ...]
-const removeDublicates = (data = []) => {
+const generateUniqueSet = (data = []) => {
   const uniquedata = new Set();
   data.map((data) => {
     data.map((dataObj) => {
@@ -28,4 +28,4 @@ const decomposeData = (data = {}, arrName) => {
   });
 };
 
-export { parseStringObjs, removeDublicates, decomposeData };
+export { parseStringObjs, generateUniqueSet, decomposeData };
