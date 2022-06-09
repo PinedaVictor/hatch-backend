@@ -1,4 +1,4 @@
-import { generateUniqueSet, decomposeData } from "./index.js";
+import { generateUniqueObjArray, decomposeData } from "./index.js";
 
 const hashByProperty = (data = [], property = "") => {
   const dataMap = new Map();
@@ -11,8 +11,7 @@ const hashByProperty = (data = [], property = "") => {
 export const sort = (dataInput = {}, sortBy = "id", direction = "asc") => {
   const defualtDirection = direction === "asc" ? true : false;
   const rawData = decomposeData(dataInput, "posts");
-  const dataSet = generateUniqueSet(rawData);
-  const data = [...dataSet];
+  const data = generateUniqueObjArray(rawData);
   const dataMap = hashByProperty(data, sortBy);
   const keys = [...dataMap.keys()];
   const sortKeys = keys.sort((a, b) => {

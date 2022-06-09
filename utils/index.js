@@ -3,7 +3,7 @@ export { parseParameters } from "./ParseParams.js";
 export { sort } from "./Sort.js";
 export {
   parseStringObjs,
-  generateUniqueSet,
+  generateUniqueObjArray,
   decomposeData,
 } from "./DataHandling.js";
 

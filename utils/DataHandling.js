@@ -1,17 +1,17 @@
 const parseStringObjs = (inputSet = new Set()) => {
-  const dataSet = new Set();
+  const dataParsed = [];
   inputSet.forEach((data) => {
     const dataObj = JSON.parse(data);
-    dataSet.add(dataObj);
+    dataParsed.push(dataObj);
   });
-  return dataSet;
+  return dataParsed;
 };
 
 // data: [[],[], ...]
-const generateUniqueSet = (data = []) => {
+const generateUniqueObjArray = (data = []) => {
   const uniquedata = new Set();
-  data.map((data) => {
-    data.map((dataObj) => {
+  data.map((dataItem) => {
+    dataItem.map((dataObj) => {
       const item = JSON.stringify(dataObj);
       uniquedata.add(item);
     });
@@ -22,10 +22,10 @@ const generateUniqueSet = (data = []) => {
 };
 
 // data: [ {arrName:[]}, ... ]
-const decomposeData = (data = {}, arrName) => {
+const decomposeData = (data = [], arrName) => {
   return data.map((dataItem) => {
     return dataItem[arrName];
   });
 };
 
-export { parseStringObjs, generateUniqueSet, decomposeData };
+export { parseStringObjs, generateUniqueObjArray, decomposeData };
