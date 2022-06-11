@@ -1,5 +1,5 @@
 // URL parameter defualts
-const defualts = { sortBy: "id", direction: "asc" };
+export const defualts = { sortBy: "id", direction: "asc" };
 export const parseParameters = (inputParams) => {
   const tags = inputParams["tags"].split(",");
   let query = {};
