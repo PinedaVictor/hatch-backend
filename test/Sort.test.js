@@ -1,4 +1,4 @@
-import { hashByProperty } from "../utils/Sort.js";
+import { hashByProperty, sort } from "../utils/Sort.js";
 
 const objs = [
   { id: 1, name: "Jack", age: 23 },
@@ -7,13 +7,44 @@ const objs = [
   { id: 16, name: "Sara", age: 45 },
 ];
 
-const hashByID = new Map([
-  [objs[0]["id"], objs[0]],
-  [objs[1]["id"], objs[1]],
-  [objs[2]["id"], objs[2]],
-  [objs[3]["id"], objs[3]],
-]);
+test("test hash by property function", () => {
+  const hashedByID = new Map([
+    [objs[0]["id"], objs[0]],
+    [objs[1]["id"], objs[1]],
+    [objs[2]["id"], objs[2]],
+    [objs[3]["id"], objs[3]],
+  ]);
+  const hashedByName = new Map([
+    [objs[0]["name"], objs[0]],
+    [objs[1]["name"], objs[1]],
+    [objs[2]["name"], objs[2]],
+    [objs[3]["name"], objs[3]],
+  ]);
+  expect(hashByProperty(objs, "id")).toStrictEqual(hashedByID);
+  expect(hashByProperty(objs, "name")).toStrictEqual(hashedByName);
+});
 
-test("test hash by property", () => {
-  expect(hashByProperty(objs)).toStrictEqual(hashByID);
+const postObjs = [
+  {
+    posts: objs,
+  },
+];
+
+test("test sort function", () => {
+  const sortedByID = [
+    { ...objs[0] },
+    { ...objs[1] },
+    { ...objs[3] },
+    { ...objs[2] },
+  ];
+
+  const checkDirection = [
+    { ...objs[2] },
+    { ...objs[3] },
+    { ...objs[1] },
+    { ...objs[0] },
+  ];
+
+  expect(sort(postObjs, "id", "asc")).toStrictEqual(sortedByID);
+  expect(sort(postObjs, "id", "desc")).toStrictEqual(checkDirection);
 });
