@@ -1,6 +1,6 @@
 import { generateUniqueObjArray, decomposeData } from "./index.js";
 
-const hashByProperty = (data = [], property = "") => {
+export const hashByProperty = (data = [], property = "") => {
   const dataMap = new Map();
   for (let i = 0; i < data.length; i++) {
     dataMap.set(data[i][property], data[i]);
