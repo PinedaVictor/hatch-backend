@@ -3,7 +3,7 @@ const apiEndpoint = "https://api.hatchways.io/assessment/blog/posts?tag=";
 
 const promise = (api, queryParam) => {
   return new Promise(async (resolve, reject) => {
-    if (queryParam) {
+    try {
       const serverResponse = await fetch(`${api}${queryParam}`, {
         method: "get",
         mode: "cors",
@@ -11,8 +11,9 @@ const promise = (api, queryParam) => {
       serverResponse.json().then((data) => {
         resolve(data);
       });
-    } else {
+    } catch (error) {
       reject("Error while generating Promise");
+      throw new Error(error);
     }
   });
 };

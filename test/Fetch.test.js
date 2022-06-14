@@ -1,8 +1,13 @@
-import { promise } from "../utils/Fetch.js";
-import fetch from "node-fetch";
+import { promise, generatePromises } from "../utils/Fetch.js";
 import Promise from "node-fetch";
-import { jest } from "@jest/globals";
 
 test("test promise", () => {
   expect(promise("", "")).toStrictEqual(new Promise());
+});
+
+test("test promise generation", () => {
+  expect(generatePromises(["tech", "health"])).toStrictEqual([
+    new Promise(),
+    new Promise(),
+  ]);
 });
