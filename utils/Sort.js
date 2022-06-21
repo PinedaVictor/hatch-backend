@@ -14,17 +14,18 @@ export const sortAsc = (input = []) => {
   });
 };
 
+const mapKeyToData = (keys = [], dataMap = new Map()) => {
+  return keys.map((key) => {
+    return dataMap.get(key);
+  });
+};
+
 export const sort = (dataInput = {}, sortBy = "id", direction = "asc") => {
-  const defualtDirection = direction === "asc" ? true : false;
   const rawData = decomposeData(dataInput, "posts");
   const data = generateUniqueObjArray(rawData);
   const dataMap = hashByProperty(data, sortBy);
   const keys = [...dataMap.keys()];
   const sortKeys = sortAsc(keys);
-
-  const sortedData = sortKeys.map((key) => {
-    return dataMap.get(key);
-  });
-
-  return defualtDirection ? sortedData : sortedData.reverse();
+  const sortedData = mapKeyToData(sortKeys, dataMap);
+  return direction === "asc" ? sortedData : sortedData.reverse();
 };
