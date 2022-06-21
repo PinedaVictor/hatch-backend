@@ -11,6 +11,6 @@ export const getPostsData = async (parameters) => {
     const data = sort(resolvePromises, sortBy, direction);
     return data;
   } catch (error) {
-    console.log("ERROR:", error);
+    throw new Error(error);
   }
 };

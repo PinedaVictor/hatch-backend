@@ -29,7 +29,15 @@ APIRouter.get("/posts", async (req, res) => {
     return;
   }
   const posts = await getPostsData(requestParameters);
-  res.json({ posts });
+
+  if (posts) {
+    console.log("the posts", posts);
+    res.json({ posts });
+    res.status(200);
+  } else {
+    res.json({ error: "Unable to fetch data" });
+    res.status(400);
+  }
 });
 
 export default APIRouter;
