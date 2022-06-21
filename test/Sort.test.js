@@ -1,4 +1,4 @@
-import { hashByProperty, sort } from "../utils/Sort.js";
+import { hashByProperty, sort, sortAsc } from "../utils/Sort.js";
 
 const objs = [
   { id: 1, name: "Jack", age: 23 },
@@ -47,4 +47,10 @@ test("test sort function", () => {
 
   expect(sort(postObjs, "id", "asc")).toStrictEqual(sortedByID);
   expect(sort(postObjs, "id", "desc")).toStrictEqual(checkDirection);
+});
+
+test("sorting asc", () => {
+  const test1 = [22, 1, 0, 9, 30, 23, 4, 5, 6, 7];
+  const sol1 = [0, 1, 4, 5, 6, 7, 9, 22, 23, 30];
+  expect(sortAsc(test1)).toStrictEqual(sol1);
 });

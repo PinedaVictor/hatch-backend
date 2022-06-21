@@ -8,15 +8,19 @@ export const hashByProperty = (data = [], property = "") => {
   return dataMap;
 };
 
+export const sortAsc = (input = []) => {
+  return input.sort((a, b) => {
+    return a - b;
+  });
+};
+
 export const sort = (dataInput = {}, sortBy = "id", direction = "asc") => {
   const defualtDirection = direction === "asc" ? true : false;
   const rawData = decomposeData(dataInput, "posts");
   const data = generateUniqueObjArray(rawData);
   const dataMap = hashByProperty(data, sortBy);
   const keys = [...dataMap.keys()];
-  const sortKeys = keys.sort((a, b) => {
-    return a - b;
-  });
+  const sortKeys = sortAsc(keys);
 
   const sortedData = sortKeys.map((key) => {
     return dataMap.get(key);
