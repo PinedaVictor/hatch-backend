@@ -31,7 +31,6 @@ APIRouter.get("/posts", async (req, res) => {
   const posts = await getPostsData(requestParameters);
 
   if (posts) {
-    console.log("the posts", posts);
     res.json({ posts });
     res.status(200);
   } else {
