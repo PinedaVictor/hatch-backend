@@ -13,7 +13,7 @@ Your feedback is appreciated and makes me a better developer, along with your gr
 - How would I implement server-side cache
   - Do I need a library/framework?
   - Or an OOP design pattern?
-- How would the program determine where to query? The cache or the API?
+  - How would the program determine where to query? The cache or the API?
 - I got stuck on testing API calls and asynchronous behavior; could you point me in the right direction?
 
 ### Thank you for your time.
