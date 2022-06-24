@@ -2,6 +2,12 @@ import Router from "express";
 import { getPostsData } from "../data/blogs.js";
 import { success, paramError } from "../utils/index.js";
 
+// The Problem
+// https://api.hatchways.io/assessment/blog/posts?tag=tech&sortBy=id&direction=desc
+
+// The Goal
+// https://api.hatchways.io/assessment/blog/posts?tags=tech,health,science&sortBy=id&direction=desc
+
 const APIRouter = Router();
 
 APIRouter.get("/ping", (req, res) => {
